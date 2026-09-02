@@ -1,9 +1,7 @@
-package banking_backendapp.spring_backend.Entity;
+package banking_backendapp.spring_backend.entity;
+
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
-import java.util.Date;
-
 
 @Entity
 @Table(name = "users")
@@ -11,43 +9,39 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer uuid;
+    private Long id;
 
     private String name;
 
-    public User(Integer uuid, String name, String email, String mobileNo, String password, String address) {
-        this.uuid = uuid;
-        this.name = name;
-        this.email = email;
-        this.mobileNo = mobileNo;
-        this.password = password;
-        Address = address;
-    }
-
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String mobileNo;
 
     private String password;
 
-    private String Address;
+    private String address;
 
     private LocalDateTime createDate = LocalDateTime.now();
-    public Integer getUuid() {
-        return uuid;
+
+    public User() {
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public User(Long id, String name, String email, String mobileNo, String password, String address) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.mobileNo = mobileNo;
+        this.password = password;
+        this.address = address;
     }
 
-    public String getAddress() {
-        return Address;
+    public Long getId() {
+        return id;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -80,6 +74,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public LocalDateTime getCreateDate() {
